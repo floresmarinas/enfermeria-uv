@@ -3,101 +3,243 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malla Enfermería UV - Interactiva</title>
-    <link rel="stylesheet" href="estilos.css">
+    <title>Malla Enfermería UV</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pink-bg: #fff5f7;
+            --pink-accent: #ff85a1;
+            --fuchsia: #f62d62;
+            --text-dark: #4a4a4a;
+            --locked: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--pink-bg);
+            color: var(--text-dark);
+            margin: 0; padding: 20px;
+        }
+
+        header { text-align: center; margin-bottom: 30px; }
+        h1 { color: var(--fuchsia); margin-bottom: 5px; }
+        .quote { font-style: italic; color: var(--pink-accent); font-size: 0.9rem; }
+
+        .malla-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .semestre {
+            background: white;
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .semestre h3 {
+            font-size: 0.85rem;
+            color: var(--fuchsia);
+            text-align: center;
+            border-bottom: 2px solid var(--pink-bg);
+            padding-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .ramo {
+            background-color: #fff9fa;
+            margin-bottom: 10px;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid #ffeef2;
+            min-height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ESTADOS */
+        .ramo.aprobado {
+            background-color: var(--fuchsia) !important;
+            color: white !important;
+            text-decoration: line-through;
+            border-color: #d11d4d;
+        }
+
+        .ramo.bloqueado {
+            background-color: var(--locked) !important;
+            color: #999 !important;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        footer { text-align: center; margin-top: 40px; }
+        #reset-btn {
+            background: var(--pink-accent);
+            color: white; border: none; padding: 10px 20px;
+            border-radius: 20px; cursor: pointer; font-weight: 600;
+        }
+    </style>
 </head>
 <body>
 
     <header>
         <h1>Mi Camino en Enfermería</h1>
-        <p id="quote" class="quote">"Cuidar es un arte que requiere un corazón dedicado."</p>
+        <p class="quote">"Estudiar es el primer paso para cuidar con el corazón."</p>
     </header>
 
     <main class="malla-container">
         <div class="semestre" data-sem="1">
-            <h3>Primer Semestre</h3>
-            <div class="ramo" id="intro_enf">INTRODUCCIÓN A LA ENFERMERÍA</div>
-            <div class="ramo" id="anatomia">ANATOMÍA</div>
-            <div class="ramo" id="biologia">BIOLOGÍA</div>
-            <div class="ramo" id="quimica">QUÍMICA Y BIOQUÍMICA</div>
-            <div class="ramo" id="herramientas_inv">HERRAMIENTAS INVESTIGACIÓN</div>
-            <div class="ramo" id="formacion_1">FORMACIÓN GENERAL I</div>
+            <h3>Semestre 1</h3>
+            <div class="ramo" id="r1_1">INTRODUCCIÓN A LA ENFERMERÍA</div>
+            <div class="ramo" id="r1_2">ANATOMÍA</div>
+            <div class="ramo" id="r1_3">BIOLOGÍA</div>
+            <div class="ramo" id="r1_4">QUÍMICA Y BIOQUÍMICA</div>
+            <div class="ramo" id="r1_5">HERRAMIENTAS INVESTIGACIÓN</div>
+            <div class="ramo" id="r1_6">FORMACIÓN GENERAL I</div>
         </div>
 
         <div class="semestre" data-sem="2">
-            <h3>Segundo Semestre</h3>
-            <div class="ramo" id="salud_fam_1" data-req="intro_enf">SALUD FAMILIAR I</div>
-            <div class="ramo" id="salud_mental_1">SALUD MENTAL I</div>
-            <div class="ramo" id="histologia" data-req="anatomia,biologia">HISTOLOGÍA</div>
-            <div class="ramo" id="fisiologia" data-req="anatomia,biologia">FISIOLOGÍA</div>
-            <div class="ramo" id="microbio" data-req="quimica">MICROBIOLOGÍA</div>
+            <h3>Semestre 2</h3>
+            <div class="ramo" id="r2_1" data-req="r1_1">SALUD FAMILIAR I</div>
+            <div class="ramo" id="r2_2">SALUD MENTAL I</div>
+            <div class="ramo" id="r2_3" data-req="r1_2,r1_3">HISTOLOGÍA</div>
+            <div class="ramo" id="r2_4" data-req="r1_2,r1_3">FISIOLOGÍA</div>
+            <div class="ramo" id="r2_5" data-req="r1_4">MICROBIOLOGÍA</div>
         </div>
 
         <div class="semestre" data-sem="3">
-            <h3>Tercer Semestre</h3>
-            <div class="ramo" id="ninez_1" data-req="intro_enf">NIÑEZ Y ADOLESCENCIA I</div>
-            <div class="ramo" id="fisiopato" data-req="fisiologia,histologia">FISIOPATOLOGÍA</div>
-            <div class="ramo" id="farma" data-req="fisiologia,quimica">FARMACOLOGÍA</div>
-            <div class="ramo" id="ingles">INGLÉS BÁSICO</div>
+            <h3>Semestre 3</h3>
+            <div class="ramo" id="r3_1" data-req="r1_1">NIÑEZ Y ADOLESCENCIA I</div>
+            <div class="ramo" id="r3_2" data-req="r2_3,r2_4">FISIOPATOLOGÍA</div>
+            <div class="ramo" id="r3_3" data-req="r1_4,r2_4">FARMACOLOGÍA</div>
+            <div class="ramo" id="r3_4">INGLÉS BÁSICO</div>
         </div>
 
         <div class="semestre" data-sem="4">
-            <h3>Cuarto Semestre</h3>
-            <div class="ramo" id="adultos" data-req="fisiopato,farma">PERSONAS ADULTAS</div>
-            <div class="ramo" id="envejecimiento">ENVEJECIMIENTO</div>
-            <div class="ramo" id="socio_enf">FUNDAMENTOS SOCIO-CULTURALES</div>
-            <div class="ramo" id="intro_inv" data-req="herramientas_inv">INTROD. INVESTIGACIÓN</div>
-            <div class="ramo" id="formacion_2" data-req="formacion_1">FORMACIÓN GENERAL II</div>
+            <h3>Semestre 4</h3>
+            <div class="ramo" id="r4_1" data-req="r3_2,r3_3">PERSONAS ADULTAS</div>
+            <div class="ramo" id="r4_2">ENVEJECIMIENTO</div>
+            <div class="ramo" id="r4_3">FUNDAMENTOS SOCIO-CULTURALES</div>
+            <div class="ramo" id="r4_4" data-req="r1_5">INTROD. INVESTIGACIÓN</div>
+            <div class="ramo" id="r4_5" data-req="r1_6">FORMACIÓN GENERAL II</div>
         </div>
 
         <div class="semestre" data-sem="5">
-            <h3>Quinto Semestre</h3>
-            <div class="ramo" id="adulto_mayor" data-req="adultos">ADULTOS Y MAYORES</div>
-            <div class="ramo" id="etica">ÉTICA Y LEGISLACIÓN</div>
-            <div class="ramo" id="metod_inv_1" data-req="intro_inv">METODOLOGÍA INVEST. I</div>
-            <div class="ramo" id="tipe_1" data-req="ALL_1_4">TIPE I</div>
+            <h3>Semestre 5</h3>
+            <div class="ramo" id="r5_1" data-req="r4_1">ADULTOS Y MAYORES</div>
+            <div class="ramo" id="r5_2">ÉTICA Y LEGISLACIÓN</div>
+            <div class="ramo" id="r5_3" data-req="r4_4">METODOLOGÍA INVEST. I</div>
+            <div class="ramo" id="r5_4" data-req="ALL14">TIPE I</div>
         </div>
 
         <div class="semestre" data-sem="6">
-            <h3>Sexto Semestre</h3>
-            <div class="ramo" id="ninez_2" data-req="ninez_1">NIÑEZ Y ADOLESCENCIA II</div>
-            <div class="ramo" id="salud_mental_2" data-req="salud_mental_1">SALUD MENTAL II</div>
-            <div class="ramo" id="metod_inv_2" data-req="metod_inv_1">METODOLOGÍA INVEST. II</div>
-            <div class="ramo" id="tipe_2" data-req="tipe_1">TIPE II</div>
+            <h3>Semestre 6</h3>
+            <div class="ramo" id="r6_1" data-req="r3_1">NIÑEZ Y ADOLESCENCIA II</div>
+            <div class="ramo" id="r6_2" data-req="r2_2">SALUD MENTAL II</div>
+            <div class="ramo" id="r6_3" data-req="r5_3">METODOLOGÍA INVEST. II</div>
+            <div class="ramo" id="r6_4" data-req="r5_4">TIPE II</div>
         </div>
 
         <div class="semestre" data-sem="7">
-            <h3>Séptimo Semestre</h3>
-            <div class="ramo" id="salud_fam_2" data-req="salud_fam_1">SALUD FAMILIAR II</div>
-            <div class="ramo" id="gestion_1" data-req="tipe_2">GESTIÓN CALIDAD I</div>
-            <div class="ramo" id="tfg_1" data-req="metod_inv_2">TRABAJO FINAL GRADO I</div>
+            <h3>Semestre 7</h3>
+            <div class="ramo" id="r7_1" data-req="r2_1">SALUD FAMILIAR II</div>
+            <div class="ramo" id="r7_2" data-req="r6_4">GESTIÓN CALIDAD I</div>
+            <div class="ramo" id="r7_3" data-req="r6_3">TRABAJO FINAL GRADO I</div>
         </div>
 
         <div class="semestre" data-sem="8">
-            <h3>Octavo Semestre</h3>
-            <div class="ramo" id="urgencias">URGENCIA Y DESASTRE</div>
-            <div class="ramo" id="gestion_2" data-req="gestion_1">GESTIÓN CALIDAD II</div>
-            <div class="ramo" id="tfg_2" data-req="tfg_1">TRABAJO FINAL GRADO II</div>
-            <div class="ramo" id="formacion_3" data-req="formacion_2">FORMACIÓN GENERAL III</div>
+            <h3>Semestre 8</h3>
+            <div class="ramo" id="r8_1">URGENCIA Y DESASTRE</div>
+            <div class="ramo" id="r8_2" data-req="r7_2">GESTIÓN CALIDAD II</div>
+            <div class="ramo" id="r8_3" data-req="r7_3">TRABAJO FINAL GRADO II</div>
+            <div class="ramo" id="r8_4" data-req="r4_5">FORMACIÓN GENERAL III</div>
         </div>
 
         <div class="semestre" data-sem="9">
-            <h3>Noveno Semestre</h3>
-            <div class="ramo" id="practica_1" data-req="ALL_1_8">PRÁCTICA PROFESIONAL I</div>
+            <h3>Semestre 9</h3>
+            <div class="ramo" id="r9_1" data-req="ALL18">PRÁCTICA PROFESIONAL I</div>
         </div>
 
         <div class="semestre" data-sem="10">
-            <h3>Décimo Semestre</h3>
-            <div class="ramo" id="practica_2" data-req="practica_1">PRÁCTICA PROFESIONAL II</div>
+            <h3>Semestre 10</h3>
+            <div class="ramo" id="r10_1" data-req="r9_1">PRÁCTICA PROFESIONAL II</div>
         </div>
     </main>
 
     <footer>
-        <button id="reset-btn">Reiniciar Todo el Progreso</button>
-        <p style="font-size: 0.7rem; margin-top: 10px; color: #ff85a1;">Hecho con ♡ para tu carrera</p>
+        <button id="reset-btn">Reiniciar Progreso</button>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        const ramos = document.querySelectorAll('.ramo');
+
+        function verificarRequisitos(el) {
+            const reqs = el.getAttribute('data-req');
+            if (!reqs) return true;
+
+            // Casos especiales (TIPE y Práctica)
+            if (reqs === 'ALL14') return checkSemestres(1, 4);
+            if (reqs === 'ALL18') return checkSemestres(1, 8);
+
+            // Casos normales
+            const lista = reqs.split(',');
+            return lista.every(id => document.getElementById(id).classList.contains('aprobado'));
+        }
+
+        function checkSemestres(inicio, fin) {
+            for (let i = inicio; i <= fin; i++) {
+                const s = document.querySelector(`.semestre[data-sem="${i}"]`);
+                const rs = s.querySelectorAll('.ramo');
+                for (let r of rs) { if (!r.classList.contains('aprobado')) return false; }
+            }
+            return true;
+        }
+
+        function actualizarVisual() {
+            ramos.forEach(r => {
+                if (!r.classList.contains('aprobado')) {
+                    if (verificarRequisitos(r)) {
+                        r.classList.remove('bloqueado');
+                    } else {
+                        r.classList.add('bloqueado');
+                    }
+                }
+            });
+        }
+
+        ramos.forEach(ramo => {
+            ramo.addEventListener('click', () => {
+                if (ramo.classList.contains('aprobado')) {
+                    ramo.classList.remove('aprobado');
+                } else {
+                    if (verificarRequisitos(ramo)) {
+                        ramo.classList.add('aprobado');
+                    } else {
+                        alert("⚠️ Ramo bloqueado: No has cumplido los requisitos previos.");
+                    }
+                }
+                localStorage.setItem('progreso_enf', JSON.stringify(Array.from(document.querySelectorAll('.ramo.aprobado')).map(r => r.id)));
+                actualizarVisual();
+            });
+        });
+
+        // Cargar
+        const datos = JSON.parse(localStorage.getItem('progreso_enf')) || [];
+        datos.forEach(id => { if(document.getElementById(id)) document.getElementById(id).classList.add('aprobado'); });
+        actualizarVisual();
+
+        document.getElementById('reset-btn').onclick = () => {
+            if(confirm("¿Borrar todo?")) { localStorage.clear(); location.reload(); }
+        };
+    </script>
 </body>
 </html>
