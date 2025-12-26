@@ -1,1 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malla Interactiva Enfermería</title>
+    <link rel="stylesheet" href="estilos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
 
+    <header>
+        <h1>Mi Camino en Enfermería</h1>
+        <p id="quote" class="quote">"El cuidado es la esencia de nuestra profesión."</p>
+    </header>
+
+    <main class="malla-container" id="malla">
+        <div class="semestre" data-sem="1">
+            <h3>Semestre 1</h3>
+            <div class="ramo" id="intro_enf">INTRODUCCIÓN A LA ENFERMERÍA</div>
+            <div class="ramo" id="anatomia">ANATOMÍA</div>
+            <div class="ramo" id="biologia">BIOLOGÍA</div>
+            <div class="ramo" id="quimica">QUÍMICA Y BIOQUÍMICA</div>
+            <div class="ramo" id="herramientas_inv">HERRAMIENTAS PARA LA INVESTIGACIÓN</div>
+            <div class="ramo" id="formacion_1">FORMACIÓN GENERAL Y PROFESIONAL I</div>
+        </div>
+
+        <div class="semestre" data-sem="2">
+            <h3>Semestre 2</h3>
+            <div class="ramo" id="salud_fam_1" data-req="intro_enf">ENFERMERÍA EN SALUD FAMILIAR I</div>
+            <div class="ramo" id="salud_mental_1">ENFERMERÍA EN SALUD MENTAL I</div>
+            <div class="ramo" id="histologia" data-req="anatomia,biologia">HISTOLOGÍA</div>
+            <div class="ramo" id="fisiologia" data-req="anatomia,biologia">FISIOLOGÍA</div>
+            <div class="ramo" id="microbio" data-req="quimica">MICROBIOLOGÍA</div>
+        </div>
+
+        <div class="semestre" data-sem="3">
+            <h3>Semestre 3</h3>
+            <div class="ramo" id="ninez_1" data-req="intro_enf">ENFERMERÍA EN NIÑEZ Y ADOLESCENCIA I</div>
+            <div class="ramo" id="fisiopato" data-req="fisiologia,histologia">FISIOPATOLOGÍA</div>
+            <div class="ramo" id="farma" data-req="fisiologia,quimica">FARMACOLOGÍA</div>
+            <div class="ramo" id="ingles">INGLÉS BÁSICO</div>
+        </div>
+
+        <div class="semestre" data-sem="4">
+            <h3>Semestre 4</h3>
+            <div class="ramo" id="adultos" data-req="fisiopato,farma">ENFERMERÍA EN PERSONAS ADULTAS</div>
+            <div class="ramo" id="envejecimiento">ENFERMERÍA DEL ENVEJECIMIENTO</div>
+            <div class="ramo" id="socio_enf">FUNDAMENTOS SOCIOCULTURALES</div>
+            <div class="ramo" id="intro_inv" data-req="herramientas_inv">INTROD. A LA INVESTIGACIÓN</div>
+            <div class="ramo" id="formacion_2" data-req="formacion_1">FORMACIÓN GENERAL II</div>
+        </div>
+
+        <div class="semestre" data-sem="5">
+            <h3>Semestre 5</h3>
+            <div class="ramo" id="adulto_mayor" data-req="adultos">ENF. ADULTAS Y MAYORES</div>
+            <div class="ramo" id="etica">ÉTICA Y LEGISLACIÓN</div>
+            <div class="ramo" id="metod_inv_1" data-req="intro_inv">METODOLOGÍA INVEST. I</div>
+            <div class="ramo" id="tipe_1" data-req="ALL_1_4">TIPE I</div>
+        </div>
+
+        <div class="semestre" data-sem="6">
+            <h3>Semestre 6</h3>
+            <div class="ramo" id="ninez_2" data-req="ninez_1">ENF. NIÑEZ Y ADOLESCENCIA II</div>
+            <div class="ramo" id="salud_mental_2" data-req="salud_mental_1">ENFERMERÍA SALUD MENTAL II</div>
+            <div class="ramo" id="metod_inv_2" data-req="metod_inv_1">METODOLOGÍA INVEST. II</div>
+            <div class="ramo" id="tipe_2" data-req="tipe_1">TIPE II</div>
+        </div>
+
+        <div class="semestre" data-sem="7">
+            <h3>Semestre 7</h3>
+            <div class="ramo" id="salud_fam_2" data-req="salud_fam_1">ENF. SALUD FAMILIAR II</div>
+            <div class="ramo" id="gestion_1" data-req="tipe_2">GESTIÓN CALIDAD I</div>
+            <div class="ramo" id="tfg_1" data-req="metod_inv_2">TRABAJO FINAL DE GRADO I</div>
+        </div>
+
+        <div class="semestre" data-sem="8">
+            <h3>Semestre 8</h3>
+            <div class="ramo" id="urgencias">ENF. EN URGENCIA Y DESASTRE</div>
+            <div class="ramo" id="gestion_2" data-req="gestion_1">GESTIÓN CALIDAD II</div>
+            <div class="ramo" id="tfg_2" data-req="tfg_1">TRABAJO FINAL DE GRADO II</div>
+            <div class="ramo" id="formacion_3" data-req="formacion_2">FORMACIÓN GENERAL III</div>
+        </div>
+
+        <div class="semestre" data-sem="9">
+            <h3>Semestre 9</h3>
+            <div class="ramo" id="practica_1" data-req="ALL_1_8">PRÁCTICA PROFESIONAL I</div>
+        </div>
+
+        <div class="semestre" data-sem="10">
+            <h3>Semestre 10</h3>
+            <div class="ramo" id="practica_2" data-req="practica_1">PRÁCTICA PROFESIONAL II</div>
+        </div>
+    </main>
+
+    <footer>
+        <button id="reset-btn">Reiniciar Progreso</button>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
