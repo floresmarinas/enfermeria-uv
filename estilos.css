@@ -1,129 +1,131 @@
 :root {
-    --pink-light: #ffeef2;
-    --pink-medium: #ff85a1;
+    --pink-bg: #fff5f7;
+    --pink-card: #ffffff;
+    --pink-accent: #ff85a1;
     --fuchsia: #f62d62;
-    --white: #ffffff;
-    --gray: #f8f9fa;
-    --locked: #d1d1d1;
-    --text: #4a4a4a;
+    --text-dark: #4a4a4a;
+    --locked-gray: #e0e0e0;
 }
+
+* { box-sizing: border-box; }
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: var(--pink-light);
-    color: var(--text);
+    background-color: var(--pink-bg);
+    color: var(--text-dark);
     margin: 0;
     padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    line-height: 1.4;
 }
 
 header {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 
 h1 {
     color: var(--fuchsia);
-    font-weight: 600;
-    margin-bottom: 5px;
+    margin: 0;
+    font-size: 1.8rem;
 }
 
 .quote {
     font-style: italic;
-    color: var(--pink-medium);
-    font-size: 0.9rem;
+    color: var(--pink-accent);
+    margin-top: 5px;
 }
 
-/* Contenedor de la Malla */
+/* Grilla Responsiva */
 .malla-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 20px;
-    width: 100%;
-    max-width: 1200px;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
-/* Semestres */
 .semestre {
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(10px);
-    border-radius: 15px;
-    padding: 15px;
-    box-shadow: 0 4px 15px rgba(246, 45, 98, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: var(--pink-card);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 10px 20px rgba(246, 45, 98, 0.05);
+    border: 1px solid rgba(246, 45, 98, 0.1);
 }
 
 .semestre h3 {
-    text-align: center;
+    font-size: 0.9rem;
     color: var(--fuchsia);
-    font-size: 1rem;
-    border-bottom: 2px solid var(--pink-light);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--pink-bg);
     padding-bottom: 10px;
 }
 
-/* Ramos */
+/* RAMOS */
 .ramo {
-    background: var(--white);
-    margin: 10px 0;
+    background-color: #fff9fa;
+    margin-bottom: 10px;
     padding: 12px;
-    border-radius: 10px;
+    border-radius: 12px;
     font-size: 0.75rem;
-    font-weight: 500;
+    font-weight: 600;
     text-align: center;
     cursor: pointer;
     transition: all 0.3s ease;
-    border-left: 5px solid var(--pink-medium);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    border: 1px solid #ffe0e6;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 50px;
+    min-height: 60px;
 }
 
 .ramo:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(246, 45, 98, 0.2);
+    transform: scale(1.02);
+    border-color: var(--pink-accent);
 }
 
-/* Estado Aprobado */
+/* Estado: Aprobado */
 .ramo.aprobado {
-    background-color: var(--fuchsia);
-    color: white;
+    background-color: var(--fuchsia) !important;
+    color: white !important;
     text-decoration: line-through;
-    border-left-color: #c41e4a;
+    border-color: #d11d4d;
+    opacity: 1 !important;
 }
 
-/* Botón Reiniciar */
+/* Estado: Bloqueado (se maneja por JS) */
+.ramo.is-locked {
+    opacity: 0.5;
+    background-color: var(--locked-gray);
+    cursor: not-allowed;
+    border-color: #ccc;
+}
+
 footer {
-    margin-top: 40px;
+    text-align: center;
+    margin-top: 50px;
+    padding-bottom: 30px;
 }
 
 #reset-btn {
-    background: var(--pink-medium);
+    background-color: var(--pink-accent);
     color: white;
     border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
-    cursor: pointer;
+    padding: 12px 25px;
+    border-radius: 30px;
     font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
     transition: background 0.3s;
 }
 
 #reset-btn:hover {
-    background: var(--fuchsia);
+    background-color: var(--fuchsia);
 }
 
-/* Responsividad */
-@media (max-width: 768px) {
-    .malla-container {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-@media (max-width: 480px) {
-    .malla-container {
-        grid-template-columns: 1fr;
-    }
+@media (max-width: 600px) {
+    .malla-container { grid-template-columns: 1fr; }
 }
